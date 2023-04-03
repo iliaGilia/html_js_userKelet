@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body id="backColor" style="background-color: aliceblue;">
+    <div>
+        <P>enter your name</P><input id="inUser">
+        <button onclick=charName()>Check</button>
+        <p id="answers"></p>
+    </div>
+    <div>
+        <p>Type a color name</p>
+        <input id="colorChange">
+        <button onclick=colorBtn()>Color Change</button>
+    </div>
+    <div>
+        <p>Choose a color for the background</p>
+        <select id="color-select">
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+            <option value="yellow">Yellow</option>
+        </select>
+    </div>
+    <div>
+        <button id="move-button" onclick=stopMoving()>try to catch me</button>
+    </div>
+    <script>
+        let inUser = document.getElementById('inUser')
+        let colorChange = document.getElementById('colorChange')
+        let answers = document.getElementById('answers')
+        let backColor = document.getElementById('backColor')
+        let colorSelect = document.getElementById('color-select')
+        let button = document.getElementById("move-button");
+
+        function charName() {
+            let nameUser = inUser.value;
+            let reversedName = nameUser.split('').reverse().join(''); // ספליט מחלק את הסטרינג למערך רברס הופך אותו וג'וין מחזיר את זה לסטרינג
+            answers.textContent = "Your name has " + nameUser.length + " characters Your name reversed is " + reversedName;
+        }
+        function colorBtn() {
+            let colorC = colorChange.value;
+            backColor.style.background = colorC
+
+
+        }
+        colorSelect.addEventListener("change", function () {
+            let selectedColor = colorSelect.value;
+            backColor.style.background = selectedColor;
+        })
+        intervalId = setInterval(function () {
+            let x = Math.random() * window.innerWidth;
+            let y = Math.random() * window.innerHeight;
+            button.style.position = "absolute";
+            button.style.top = y + "px";
+            button.style.left = x + "px";
+        }, 1500);
+        function stopMoving(){
+            clearInterval(intervalId);
+            alert("congrats ill stop for now")
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>
